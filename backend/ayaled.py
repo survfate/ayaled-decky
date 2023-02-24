@@ -33,8 +33,8 @@ class AyaLed():
     @staticmethod
     def set_pixel(js, led, color: Color):
         AyaLed.set_subpixel(js, led * 3, color.R)
-        AyaLed.set_subpixel(js, led * 3 + 1, color.G)
-        AyaLed.set_subpixel(js, led * 3 + 2, color.B)
+        AyaLed.set_subpixel(js, led * 3 + 1, color.B)
+        AyaLed.set_subpixel(js, led * 3 + 2, color.G)
 
     @staticmethod
     def set_subpixel(js, subpixel_idx, brightness):
@@ -43,11 +43,11 @@ class AyaLed():
     
     @staticmethod
     def ec_cmd(cmd, p1, p2):
-        for x in range(2):
+        for x in range(1):
             EC.Write(0x6d, cmd)
             EC.Write(0xb1, p1)
             EC.Write(0xb2, p2)
             EC.Write(0xbf, 0x10)
-            time.sleep(0.01)
+            #time.sleep(0.01)
             EC.Write(0xbf, 0xff)
-            time.sleep(0.01)
+            #time.sleep(0.01)
