@@ -94,6 +94,10 @@ export default definePlugin((serverApi: ServerAPI) => {
   Setting.loadSettingsFromLocalStorage();
   Backend.init(serverApi);
   Backend.applySettings();
+  SteamClient.System.RegisterForOnResumeFromSuspend(async () => {
+    Backend.applySettings();
+    console.log("结束休眠");
+  });
   return {
     title: <div className={staticClasses.Title}>ayaled</div>,
     content: <Content/>,
