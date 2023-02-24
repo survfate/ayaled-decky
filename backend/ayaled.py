@@ -43,7 +43,7 @@ class AyaLed():
     
     @staticmethod
     def ec_cmd(cmd, p1, p2):
-        for x in range(1):
+        for x in range(2):
             EC.Write(0x6d, cmd)
             EC.Write(0xb1, p1)
             EC.Write(0xb2, p2)
