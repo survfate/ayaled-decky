@@ -16,7 +16,7 @@ export class Backend {
 
   private static applyLedOff() {
     console.log("Applying ledOff ");
-    Backend.serverAPI!.callPluginMethod("set_ledOn", {"value": false});
+    Backend.serverAPI!.callPluginMethod("set_ledOff", {});
   }
 
   public static throwSuspendEvt(){
