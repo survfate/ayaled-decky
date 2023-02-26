@@ -1544,11 +1544,116 @@ prototype.constructor).get(n),t=t.prototype,i.setType(a,t,r);}var s=null!==(o=i.
             } }));
     };
 
+    // from https://medium.com/@pdx.lucasm/canvas-with-react-js-32e133c05258
+    const Canvas = (props) => {
+        const { draw, options, ...rest } = props;
+        //const { context, ...moreConfig } = options;
+        const canvasRef = useCanvas(draw);
+        return window.SP_REACT.createElement("canvas", { ref: canvasRef, ...rest });
+    };
+    const useCanvas = (draw) => {
+        const canvasRef = React.useRef(null);
+        React.useEffect(() => {
+            const canvas = canvasRef.current;
+            const context = canvas.getContext('2d');
+            let frameCount = 0;
+            let animationFrameId;
+            const render = () => {
+                frameCount++;
+                draw(context, frameCount);
+                animationFrameId = window.requestAnimationFrame(render);
+            };
+            render();
+            return () => {
+                window.cancelAnimationFrame(animationFrameId);
+            };
+        }, [draw]);
+        return canvasRef;
+    };
+
     const Content = () => {
         const [ledOn, setledOn] = React.useState(Setting.getLedOn());
         const [currentTargetRed, setCurrentTargetRed] = React.useState(Setting.getRed());
         const [currentTargetGreen, setCurrentTargetGreen] = React.useState(Setting.getGreen());
         const [currentTargetBlue, setCurrentTargetBlue] = React.useState(Setting.getBlue());
+        const [currentMark, setCurrentMark] = React.useState(0);
+        function onClickCanvas(e) {
+            //console.log("canvas click", e);
+            const realEvent = e.nativeEvent;
+            //console.log("Canvas click @ (" + realEvent.layerX.toString() + ", " + realEvent.layerY.toString() + ")");
+            const target = e.currentTarget;
+            //console.log("Target dimensions " + target.width.toString() + "x" + target.height.toString());
+            const clickX = realEvent.layerX;
+            setCurrentMark(clickX);
+            const cellwidth = target.width / 150;
+            var j = clickX / cellwidth;
+            //console.log("j " + j.toString());
+            var r = 255, g = 0, b = 0;
+            for (var i = 0; i < 150; i++) {
+                if (i < 25) {
+                    g += 10;
+                }
+                else if (i > 25 && i < 50) {
+                    r -= 10;
+                }
+                else if (i > 50 && i < 75) {
+                    g -= 10;
+                    b += 10;
+                }
+                else if (i > 75 && i < 100) {
+                    r += 10;
+                }
+                else {
+                    b -= 10;
+                    if (b < 0)
+                        b = 0;
+                }
+                if (i >= j) {
+                    setCurrentTargetRed(r);
+                    setCurrentTargetGreen(g);
+                    setCurrentTargetBlue(b);
+                    break;
+                }
+            }
+        }
+        function drawCanvas(ctx, frameCount) {
+            if (frameCount % 100 > 1) {
+                return;
+            }
+            const width = ctx.canvas.width;
+            const height = ctx.canvas.height;
+            const cellwidth = width / 150;
+            var r = 255, g = 0, b = 0;
+            for (var i = 0; i < 150; i++) {
+                if (i < 25) {
+                    g += 10;
+                }
+                else if (i > 25 && i < 50) {
+                    r -= 10;
+                }
+                else if (i > 50 && i < 75) {
+                    g -= 10;
+                    b += 10;
+                }
+                else if (i > 75 && i < 100) {
+                    r += 10;
+                }
+                else {
+                    b -= 10;
+                }
+                ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+                ctx.fillRect(cellwidth * i, 0, cellwidth, height);
+            }
+            if (currentMark > 0) {
+                ctx.beginPath();
+                ctx.fillStyle = "#000000";
+                ctx.moveTo(currentMark, 0);
+                ctx.lineTo(currentMark + 4, 0);
+                ctx.lineTo(currentMark + 2, 4);
+                ctx.fill();
+                console.log("fill Mark " + currentMark.toString());
+            }
+        }
         React.useEffect(() => {
             if (ledOn) {
                 Setting.setLedOn(currentTargetRed, currentTargetGreen, currentTargetBlue);
@@ -1568,15 +1673,26 @@ prototype.constructor).get(n),t=t.prototype,i.setType(a,t,r);}var s=null!==(o=i.
                         setledOn(value);
                     } })),
             ledOn && window.SP_REACT.createElement(PanelSectionRow, null,
-                window.SP_REACT.createElement(SlowSliderField, { label: "Red", description: `Control red`, value: currentTargetRed, step: 1, max: 255, min: 0, showValue: true, onChangeEnd: (value) => {
+                window.SP_REACT.createElement(Canvas, { draw: drawCanvas, width: 268, height: 50, style: {
+                        "width": "268px",
+                        "height": "50px",
+                        "padding": "0px",
+                        "border": "1px solid #1a9fff",
+                        //"position":"relative",
+                        "background-color": "#1a1f2c",
+                        "border-radius": "4px",
+                        //"margin":"auto",
+                    }, onClick: (e) => onClickCanvas(e) })),
+            ledOn && window.SP_REACT.createElement(PanelSectionRow, null,
+                window.SP_REACT.createElement(SlowSliderField, { label: "\u7EA2", value: currentTargetRed, step: 1, max: 255, min: 0, showValue: true, onChangeEnd: (value) => {
                         setCurrentTargetRed(value);
                     } })),
             ledOn && window.SP_REACT.createElement(PanelSectionRow, null,
-                window.SP_REACT.createElement(SlowSliderField, { label: "Green", description: `Control green`, value: currentTargetGreen, step: 1, max: 255, min: 0, showValue: true, onChangeEnd: (value) => {
+                window.SP_REACT.createElement(SlowSliderField, { label: "\u7EFF", value: currentTargetGreen, step: 1, max: 255, min: 0, showValue: true, onChangeEnd: (value) => {
                         setCurrentTargetGreen(value);
                     } })),
             ledOn && window.SP_REACT.createElement(PanelSectionRow, null,
-                window.SP_REACT.createElement(SlowSliderField, { label: "Blue", description: `Control blue`, value: currentTargetBlue, step: 1, max: 255, min: 0, showValue: true, onChangeEnd: (value) => {
+                window.SP_REACT.createElement(SlowSliderField, { label: "\u84DD", value: currentTargetBlue, step: 1, max: 255, min: 0, showValue: true, onChangeEnd: (value) => {
                         setCurrentTargetBlue(value);
                     } }))));
     };
