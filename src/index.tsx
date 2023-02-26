@@ -18,6 +18,7 @@ const Content: VFC = () => {
   const [currentTargetRed, setCurrentTargetRed] = useState<number>(Setting.getRed());
   const [currentTargetGreen, setCurrentTargetGreen] = useState<number>(Setting.getGreen());
   const [currentTargetBlue, setCurrentTargetBlue] = useState<number>(Setting.getBlue());
+  const [currentMark, setCurrentMark] = useState<number>(0);
 
   function onClickCanvas(e: any) {
     //console.log("canvas click", e);
@@ -26,6 +27,7 @@ const Content: VFC = () => {
     const target: any = e.currentTarget;
     //console.log("Target dimensions " + target.width.toString() + "x" + target.height.toString());
     const clickX = realEvent.layerX;
+    setCurrentMark(clickX);
     const cellwidth = target.width / 150;
     var j = clickX / cellwidth;
     //console.log("j " + j.toString());
@@ -91,6 +93,16 @@ const Content: VFC = () => {
         ctx.fillStyle="rgb("+r+","+g+","+b+")";
         ctx.fillRect(cellwidth*i,0,cellwidth,height);
     }
+
+    if(currentMark>0){
+      ctx.beginPath();
+      ctx.fillStyle = "#000000";
+      ctx.moveTo(currentMark,   0);
+      ctx.lineTo(currentMark+4, 0);
+      ctx.lineTo(currentMark+2, 4);
+      ctx.fill();
+      console.log("fill Mark " + currentMark.toString());
+    }
   }
 
   useEffect(() => {
@@ -131,8 +143,7 @@ const Content: VFC = () => {
       </PanelSectionRow>}
       {ledOn&&<PanelSectionRow>
         <SlowSliderField
-          label="Red"
-          description={`Control red`}
+          label="红"
           value={currentTargetRed}
           step={1}
           max={255}
@@ -145,8 +156,7 @@ const Content: VFC = () => {
       </PanelSectionRow>}
       {ledOn&&<PanelSectionRow>
         <SlowSliderField
-          label="Green"
-          description={`Control green`}
+          label="绿"
           value={currentTargetGreen}
           step={1}
           max={255}
@@ -159,8 +169,7 @@ const Content: VFC = () => {
       </PanelSectionRow>}
       {ledOn&&<PanelSectionRow>
         <SlowSliderField
-          label="Blue"
-          description={`Control blue`}
+          label="蓝"
           value={currentTargetBlue}
           step={1}
           max={255}
