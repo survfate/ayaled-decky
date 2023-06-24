@@ -110,15 +110,21 @@
     const staticClasses = quickAccessMenuClasses;
     findModule((mod) => typeof mod === 'object' && mod?.ScrollPanel?.includes('scrollpanel'));
     findModule((mod) => typeof mod === 'object' && mod?.GamepadDialogContent?.includes('gamepaddialog'));
-    findModule((mod) => typeof mod === 'object' && mod?.PanelSection?.includes('quickaccesscontrols'));
+    findModule((mod) => typeof mod === 'object' && typeof mod?.PanelSection === 'string' && mod?.PanelSection?.includes('quickaccesscontrols'));
     findModule((mod) => typeof mod === 'object' && mod?.OOBEUpdateStatusContainer?.includes('updaterfield'));
     findModule((mod) => typeof mod === 'object' && mod?.Container?.includes('appdetailsplaysection'));
     findModule((mod) => typeof mod === 'object' && mod?.SliderControlPanelGroup?.includes('gamepadslider'));
     findModule((mod) => typeof mod === 'object' && mod?.TopCapsule?.includes('sharedappdetailsheader'));
     findModule((mod) => typeof mod === 'object' && mod?.HeaderLoaded?.includes('appdetails_'));
+    findModule((mod) => typeof mod === 'object' && mod?.BasicUiRoot?.includes('gamepadui_'));
 
     const ToggleField = Object.values(CommonUIModule).find((mod) => mod?.render?.toString()?.includes('ToggleField,fallback'));
 
+    var FileSelectionType;
+    (function (FileSelectionType) {
+        FileSelectionType[FileSelectionType["FILE"] = 0] = "FILE";
+        FileSelectionType[FileSelectionType["FOLDER"] = 1] = "FOLDER";
+    })(FileSelectionType || (FileSelectionType = {}));
     // TypeScript helper function
     const definePlugin = (fn) => {
         return (...args) => {
