@@ -26,7 +26,11 @@ try:
     if PRODUCT_NAME in (
         "AIR",
         "AIR Pro",
+        "AIR 1S"
         "AYANEO 2",
+        "AYANEO 2S",
+        "AYANEO GEEK",
+        "AYANEO GEEK 1S",
         ):
         FAN_MANUAL_OFFSET=0x4a
         FAN_RPMWRITE_OFFSET=0x4b
