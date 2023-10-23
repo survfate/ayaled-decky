@@ -30,7 +30,7 @@ jobs:
           pnpm install --no-frozen-lockfile
           pnpm update decky-frontend-lib --latest
           pnpm run build
-          tar -czvf ayaled.tar.gz --transform 's,^,ayaled/,' dist backend bin *.py *.json *.md *.js LICENSE
+          tar -czvf ayaled.tar.gz --transform 's,^,ayaled/,' dist backend *.py *.json *.md *.js LICENSE
       
       - name: show files
         run: |
