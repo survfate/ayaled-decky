@@ -1,8 +1,12 @@
-# AYALED
-用于[decky-loader](https://github.com/SteamDeckHomebrew/decky-loader)的插件  
-为部分ayaneo设备提供摇杆灯光控制
+# AYALED Decky
+Fork of the ayaled plugin from https://github.com/honjow/ayaled (Original by https://github.com/Gawah/ayaled). This plugin enable control of the RGB LED on Ayaneo devices
 
-## 支持设备
+## Fork updates
+- This is primarily intended to work with ChimeraOS.
+- Make the default language English.
+- Add more supported devices to the list of the base code
+
+## Supported devices
 - AYANEO AIR
 - AYANEO AIR 1S
 - AYANEO AIR Pro
@@ -11,16 +15,15 @@
 - AYANEO GEEK
 - AYANEO GEEK 1S
 
-## 手动安装
+## Installation instructions (Manual)
 
-1. 安装[decky-loader](https://github.com/SteamDeckHomebrew/decky-loader)
-2. 下载[Releases](https://github.com//ayaled/releases) ayaled.tar.gz
-3. 调整插件目录权限 `chmod -R 777 ${HOME}/homebrew/plugins`
-4. 解压到/home/xxxx/homebrew/plugins/下
-5. 重启 decky-loader, `sudo systemctl restart plugin_loader.service`
-6. 进入游戏模式，即可在decky页面使用该插件
+1. Install [decky-loader](https://github.com/SteamDeckHomebrew/decky-loader)
+2. Download [Releases](https://github.com/survfate/ayaled-decky/releases) ayaled-decky.tar.gz
+3. Run `chmod -R 777 ${HOME}/homebrew/plugins`
+4. Extract the plugin content to /home/gamer/homebrew/plugins/
+5. Reload decky-loader with `sudo systemctl restart plugin_loader.service`
 
-## 一键安装
+## Installation instructions (Script)
 ```
-curl -L https://raw.githubusercontent.com/honjow/ayaled/main/install.sh | sh
+curl -L https://github.com/survfate/ayaled-decky/main/install.sh | sh
 ```
