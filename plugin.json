@@ -1,10 +1,10 @@
 {
-  "name": "ayaled-decky",
+  "name": "AYALED Decky",
   "author": "yxx",
   "flags": ["root"],
   "publish": {
     "tags": ["root"],
-    "description": "ayaled-decky plugin.",
+    "description": "Decky Loader plugin for control the RGB LED on Ayaneo devices.",
     "image": "https://opengraph.githubassets.com/1/SteamDeckHomebrew/PluginLoader"
   }
 }
