@@ -1674,9 +1674,9 @@
             Setting.setGreen(currentTargetGreen);
             Setting.setBlue(currentTargetBlue);
         }, [currentTargetRed, currentTargetGreen, currentTargetBlue]);
-        return (window.SP_REACT.createElement(PanelSection, { title: "\u8BBE\u7F6E" },
+        return (window.SP_REACT.createElement(PanelSection, { title: "SETTINGS" },
             window.SP_REACT.createElement(PanelSectionRow, null,
-                window.SP_REACT.createElement(ToggleField, { label: "开启灯效", checked: ledOn, onChange: (value) => {
+                window.SP_REACT.createElement(ToggleField, { label: "Enable LED", checked: ledOn, onChange: (value) => {
                         setledOn(value);
                     } })),
             ledOn && window.SP_REACT.createElement(PanelSectionRow, null,
@@ -1691,15 +1691,15 @@
                         //"margin":"auto",
                     }, onClick: (e) => onClickCanvas(e) })),
             ledOn && window.SP_REACT.createElement(PanelSectionRow, null,
-                window.SP_REACT.createElement(SlowSliderField, { label: "\u7EA2", value: currentTargetRed, step: 1, max: 255, min: 0, showValue: true, onChangeEnd: (value) => {
+                window.SP_REACT.createElement(SlowSliderField, { label: "Red", value: currentTargetRed, step: 1, max: 255, min: 0, showValue: true, onChangeEnd: (value) => {
                         setCurrentTargetRed(value);
                     } })),
             ledOn && window.SP_REACT.createElement(PanelSectionRow, null,
-                window.SP_REACT.createElement(SlowSliderField, { label: "\u7EFF", value: currentTargetGreen, step: 1, max: 255, min: 0, showValue: true, onChangeEnd: (value) => {
+                window.SP_REACT.createElement(SlowSliderField, { label: "Green", value: currentTargetGreen, step: 1, max: 255, min: 0, showValue: true, onChangeEnd: (value) => {
                         setCurrentTargetGreen(value);
                     } })),
             ledOn && window.SP_REACT.createElement(PanelSectionRow, null,
-                window.SP_REACT.createElement(SlowSliderField, { label: "\u84DD", value: currentTargetBlue, step: 1, max: 255, min: 0, showValue: true, onChangeEnd: (value) => {
+                window.SP_REACT.createElement(SlowSliderField, { label: "Blue", value: currentTargetBlue, step: 1, max: 255, min: 0, showValue: true, onChangeEnd: (value) => {
                         setCurrentTargetBlue(value);
                     } }))));
     };
@@ -1709,10 +1709,10 @@
         Backend.applySettings();
         SteamClient.System.RegisterForOnResumeFromSuspend(async () => {
             Backend.applySettings();
-            console.log("结束休眠");
+            console.log("End hibernation");
         });
         return {
-            title: window.SP_REACT.createElement("div", { className: staticClasses.Title }, "ayaled"),
+            title: window.SP_REACT.createElement("div", { className: staticClasses.Title }, "AYALED Decky"),
             content: window.SP_REACT.createElement(Content, null),
             icon: window.SP_REACT.createElement(FaLightbulb, null),
             onDismount() {

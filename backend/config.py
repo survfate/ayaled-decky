@@ -2,9 +2,9 @@ import logging
 import subprocess
 from helpers import get_homebrew_path,get_home_path,get_user
 
-#日志配置
+# Log configuration
 try:
-    LOG_LOCATION = "/tmp/ayaled_py.log"
+    LOG_LOCATION = "/tmp/ayaled_decky_py.log"
     logging.basicConfig(
         level = logging.DEBUG,
         filename = LOG_LOCATION,
@@ -12,16 +12,15 @@ try:
         filemode = 'w',
         force = True)
 except Exception as e:
-    logging.error(f"日志配置异常|{e}")
+    logging.error(f"Unexpected log configuration|{e}")
 
-
-#设备信息获取配置
+# Gather device information
 try:
     PRODUCT_NAME = open("/sys/devices/virtual/dmi/id/product_name", "r").read().strip()
 except Exception as e:
-    logging.error(f"设备信息配置异常|{e}")
+    logging.error(f"Unexpected error when gather device information|{e}")
 
-#灯效ec偏移配置
+# Lighting effect offset configuration
 try:
     if PRODUCT_NAME in (
         "AIR",
@@ -38,4 +37,4 @@ try:
         FAN_RPMWRITE_MAX=100
         FAN_IS_ADAPTED=True
 except Exception as e:
-    logging.error(f"灯效ec配置异常|{e}")
+    logging.error(f"Unexpected lighting effect offset configuration|{e}")
