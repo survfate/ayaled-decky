@@ -7,7 +7,7 @@ import sys
 try:
     from helpers import get_homebrew_path,get_home_path,get_user
     HOMEBREW_PATH = get_homebrew_path(get_home_path(get_user()))   
-    sys.path.append("{}/plugins/ayaled/backend".format(HOMEBREW_PATH))
+    sys.path.append("{}/plugins/ayaled-decky/backend".format(HOMEBREW_PATH))
     from config import logging
     from ayaled import AyaLed,Color
     logging.info("ayaled main.py")

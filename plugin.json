@@ -1,10 +1,10 @@
 {
-  "name": "ayaled",
+  "name": "ayaled-decky",
   "author": "yxx",
   "flags": ["root"],
   "publish": {
     "tags": ["root"],
-    "description": "ayaled plugin.",
+    "description": "ayaled-decky plugin.",
     "image": "https://opengraph.githubassets.com/1/SteamDeckHomebrew/PluginLoader"
   }
 }

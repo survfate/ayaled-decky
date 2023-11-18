@@ -1,30 +1,27 @@
 #!/bin/bash
 
-# check if jq is installed
+# Check if jq is installed
 if ! [ -x "$(command -v jq)" ]; then
   echo 'Error: jq is not installed.' >&2
   exit 1
 fi
 
 # Download latest release
-RELEASE=$(curl -s 'https://api.github.com/repos/honjow/ayaled/releases/latest')
+RELEASE=$(curl -s 'https://api.github.com/repos/survfate/ayaled-decky/releases/latest')
 RELEASE_VERSION=$(echo "$RELEASE" | jq -r '.tag_name')
 RELEASE_URL=$(echo "$RELEASE" | jq -r '.assets[0].browser_download_url')
-curl -L -o /tmp/PowerControl.tar.gz "$RELEASE_URL"
+curl -L -o /tmp/ayaled-decky.tar.gz "$RELEASE_URL"
 
-echo "Installing ayaled $RELEASE_VERSION"
+echo "Installing ayaled-decky $RELEASE_VERSION"
 
-# remove old version
+# Remove old version
 chmod -R 777 ${HOME}/homebrew/plugins
-rm -rf ${HOME}/homebrew/plugins/ayaled
+rm -rf ${HOME}/homebrew/plugins/ayaled-decky
 
-# Extract
-tar -xzf /tmp/ayaled.tar.gz -C ${HOME}/homebrew/plugins
+# Extract & Cleanup
+tar -xzf /tmp/ayaled-decky.tar.gz -C ${HOME}/homebrew/plugins && rm -f /tmp/ayaled-decky.tar.gz
 
-# Cleanup
-rm -f /tmp/ayaled.tar.gz
+echo "ayaled-decky $RELEASE_VERSION installed"
 
-echo "ayaled $RELEASE_VERSION installed"
-
-# restart plugin_loader
+# Restart plugin_loader
 sudo systemctl restart plugin_loader.service

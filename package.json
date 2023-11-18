@@ -1,7 +1,7 @@
 {
-  "name": "ayaled",
+  "name": "ayaled-decky",
   "version": "1.0.1",
-  "description": "ayaled plugin.",
+  "description": "ayaled-decky plugin.",
   "scripts": {
     "build": "shx rm -rf dist && rollup -c",
     "watch": "rollup -c -w",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Gawah/ayaled.git"
+    "url": "git+https://github.com/survfate/ayaled-decky.git"
   },
   "keywords": [
     "decky",
@@ -21,9 +21,9 @@
   "author": "yxx",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/Gawah/ayaled/issues"
+    "url": "https://github.com/survfate/ayaled-decky/issues"
   },
-  "homepage": "https://github.com/Gawah/ayaled#readme",
+  "homepage": "https://github.com/survfate/ayaled-decky#readme",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.1.0",
     "@rollup/plugin-json": "^4.1.0",
