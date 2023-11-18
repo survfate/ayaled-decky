@@ -36,7 +36,7 @@ jobs:
         run: |
           tar -tzvf ayaled-decky.tar.gz
       
-      - name: Publish Artifacts
+      - name: Publish artifacts
         uses: actions/upload-artifact@v2
         with:
           name: ayaled-decky
@@ -49,7 +49,7 @@ jobs:
     steps:
       - run: mkdir /tmp/artifacts
 
-      - name: Download Artifacts
+      - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
           path: /tmp/artifacts
