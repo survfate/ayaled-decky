@@ -119,10 +119,10 @@ const Content: VFC = () => {
   }, [currentTargetRed, currentTargetGreen, currentTargetBlue]);
 
   return (
-    <PanelSection title="设置">
+    <PanelSection title="SETTINGS">
       <PanelSectionRow>
         <ToggleField
-          label={"开启灯效"}
+          label={"Enable LED"}
           checked={ledOn}
           onChange={(value) => {
             setledOn(value);
@@ -143,7 +143,7 @@ const Content: VFC = () => {
       </PanelSectionRow>}
       {ledOn&&<PanelSectionRow>
         <SlowSliderField
-          label="红"
+          label="Red"
           value={currentTargetRed}
           step={1}
           max={255}
@@ -156,7 +156,7 @@ const Content: VFC = () => {
       </PanelSectionRow>}
       {ledOn&&<PanelSectionRow>
         <SlowSliderField
-          label="绿"
+          label="Green"
           value={currentTargetGreen}
           step={1}
           max={255}
@@ -169,7 +169,7 @@ const Content: VFC = () => {
       </PanelSectionRow>}
       {ledOn&&<PanelSectionRow>
         <SlowSliderField
-          label="蓝"
+          label="Blue"
           value={currentTargetBlue}
           step={1}
           max={255}
@@ -192,10 +192,10 @@ export default definePlugin((serverApi: ServerAPI) => {
   Backend.applySettings();
   SteamClient.System.RegisterForOnResumeFromSuspend(async () => {
     Backend.applySettings();
-    console.log("结束休眠");
+    console.log("End hibernation");
   });
   return {
-    title: <div className={staticClasses.Title}>ayaled</div>,
+    title: <div className={staticClasses.Title}>AYALED Decky</div>,
     content: <Content/>,
     icon: <FaLightbulb/>,
     onDismount() {
