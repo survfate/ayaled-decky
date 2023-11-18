@@ -25,5 +25,5 @@ Fork of the ayaled plugin from https://github.com/honjow/ayaled (Original by htt
 
 ## Installation instructions (Script)
 ```
-curl -L https://github.com/survfate/ayaled-decky/main/install.sh | sh
+curl -L https://raw.githubusercontent.com/survfate/ayaled-decky/main/install.sh | sh
 ```
