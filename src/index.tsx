@@ -195,7 +195,7 @@ export default definePlugin((serverApi: ServerAPI) => {
     console.log("End hibernation");
   });
   return {
-    title: <div className={staticClasses.Title}>AYALED Decky</div>,
+    title: <div className={staticClasses.Title}>ayaled-decky</div>,
     content: <Content/>,
     icon: <FaLightbulb/>,
     onDismount() {
