@@ -25,6 +25,7 @@ try:
     if PRODUCT_NAME in (
         "AIR",
         "AIR Pro",
+        "AIR Plus",
         "AIR 1S"
         "AYANEO 2",
         "AYANEO 2S",
